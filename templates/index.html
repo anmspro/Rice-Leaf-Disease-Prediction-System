@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rice Leaf Disease Prediction System</title>
+</head>
+
+<body>
+    <h1>Rice Leaf Disease Prediction System</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    {% if image_path %}
+    <img src="{{ image_path }}" alt="Uploaded Image" width="300">
+    {% endif %}
+    {% if prediction %}
+    <h2>Prediction:</h2>
+    <p>{{ prediction }}</p>
+    {% endif %}
+</body>
+
+</html>
