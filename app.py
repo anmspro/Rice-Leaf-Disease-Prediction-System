@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing import image
 import os
 
 app = Flask(__name__)
-model = load_model('Vgg16_leaf.h5')  # Load your trained model
+model = load_model('MobileNetv2_leaf.h5')  # Load your trained model
 # image_path = 'static/images/Health/Health_original_IMG_3232.jpg_0a2d05d3-2090-429e-9b56-6b050d188b73.jpg'
 
 def predict_image(image_path, model):
