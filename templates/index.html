@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <h1>Rice Leaf Disease Prediction System</h1>
+    <h2>Rice Leaf Disease Prediction System</h2>
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="file">
         <input type="submit" value="Upload">
@@ -14,9 +14,9 @@
     {% if image_path %}
     <img src="{{ image_path }}" alt="Uploaded Image" width="300">
     {% endif %}
-    {% if prediction %}
+    {% if prediction is not none %}
     <h2>Prediction:</h2>
-    <p>{{ prediction }}</p>
+    <p>{{ predicted_class }}</p>
     {% endif %}
 </body>
 
