@@ -3,21 +3,85 @@
 
 <head>
     <title>Rice Leaf Disease Prediction System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<body>
-    <h2>Rice Leaf Disease Prediction System</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
-    </form>
-    {% if image_path %}
-    <img src="{{ image_path }}" alt="Uploaded Image" width="300">
-    {% endif %}
-    {% if prediction is not none %}
-    <h2>Prediction:</h2>
-    <p>{{ predicted_class }}</p>
-    {% endif %}
-</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+    }
 
-</html>
+    h2 {
+        color: #333;
+    }
+
+    form {
+        margin: 20px;
+    }
+
+    input[type="file"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="submit"] {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    img {
+        margin-top: 20px;
+        max-width: 100%;
+    }
+
+    h2 {
+        margin-top: 20px;
+        color: #333;
+    }
+
+    p {
+        color: #007BFF;
+    }
+</style>
+
+<body>
+    <header>
+        <h1>Rice Leaf Disease Prediction System</h1>
+    </header>
+
+    <main>
+        <section>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Predict">
+            </form>
+        </section>
+
+        <section>
+            {% if image_path %}
+            <img src="{{ image_path }}" alt="Uploaded Image" width="300">
+            {% endif %}
+        </section>
+
+        <section>
+            {% if prediction is not none %}
+            <h2>Prediction:</h2>
+            <p>{{ predicted_class }}</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
