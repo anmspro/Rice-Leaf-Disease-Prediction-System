@@ -3,55 +3,120 @@
 
 <head>
     <title>Rice Leaf Disease Prediction System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Jx04me6bT5Bx6p6c9W+UzWFePlExl5r0O5UgNd2bD9I5QU" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #084B8A;
+            /* Primary Color */
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #084B8A;
+            /* Primary Color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        img {
+            margin-top: 20px;
+            max-width: 80%;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #084B8A;
+            /* Primary Color */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        footer {
+            padding: 10px;
+            background-color: #084B8A;
+            /* Primary Color */
+            color: #fff;
+            /* margin-top: auto; */
+            /* Make the footer stick to the bottom */
+        }
+
+        .loading-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #0044cc;
+            /* Primary Color */
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        text-align: center;
-        padding: 20px;
-    }
-
-    h2 {
-        color: #333;
-    }
-
-    form {
-        margin: 20px;
-    }
-
-    input[type="file"] {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    input[type="submit"] {
-        background-color: #007BFF;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    img {
-        margin-top: 20px;
-        max-width: 100%;
-    }
-
-    h2 {
-        margin-top: 20px;
-        color: #333;
-    }
-
-    p {
-        color: #007BFF;
-    }
-</style>
 
 <body>
     <header>
@@ -68,20 +133,37 @@
 
         <section>
             {% if image_path %}
-            <img src="{{ image_path }}" alt="Uploaded Image" width="300">
+            <img src="{{ image_path }}" alt="Uploaded Image">
             {% endif %}
         </section>
 
         <section>
-            {% if prediction is not none %}
-            <h2>Prediction:</h2>
-            <p>{{ predicted_class }}</p>
+            {% if loading %}
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+            </div>
+            {% endif %}
+
+            {% if predictions %}
+            <h2>Predictions:</h2>
+            <ul>
+                {% for model_name, predicted_class in predictions.items() %}
+                <li>{{ model_name }}: {{ predicted_class }}</li>
+                {% endfor %}
+            </ul>
             {% endif %}
         </section>
     </main>
 
     <footer>
-
+        &copy; 2023 Rice Leaf Disease Prediction System
     </footer>
 
+    <script>
+        document.querySelector('form').addEventListener('submit', function () {
+            document.querySelector('.loading-container').style.display = 'flex';
+        });
+    </script>
 </body>
+
+</html>
