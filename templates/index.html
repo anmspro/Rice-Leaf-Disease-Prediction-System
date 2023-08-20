@@ -4,7 +4,7 @@
 <head>
     <title>Rice Leaf Disease Prediction System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+Jx04me6bT5Bx6p6c9W+UzWFePlExl5r0O5UgNd2bD9I5QU" crossorigin="anonymous">
+        crossorigin="anonymous">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -19,7 +19,7 @@
         h1 {
             color: #084B8A;
             /* Primary Color */
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
         form {
@@ -58,29 +58,15 @@
         }
 
         h2 {
-            margin-top: 20px;
+            margin-top: 1rem;
             color: #084B8A;
             /* Primary Color */
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 10px 0;
-            font-size: 18px;
-            color: #333;
         }
 
         footer {
             padding: 10px;
             background-color: #084B8A;
-            /* Primary Color */
             color: #fff;
-            /* margin-top: auto; */
-            /* Make the footer stick to the bottom */
         }
 
         .loading-container {
@@ -146,12 +132,17 @@
 
             {% if predictions %}
             <h2>Predictions:</h2>
-            <ul>
-                {% for model_name, predicted_class in predictions.items() %}
-                <li>{{ model_name }}: {{ predicted_class }}</li>
+            <div class="row px-8 pb-4">
+                {% for model_name, prediction in predictions.items() %}
+                <div class="col-4 pb-4">
+                    <h3>{{ model_name }}</h3>
+                    <p class="m-0"><strong>Prediction:</strong> {{ prediction.class }}</p>
+                    <p class="m-0"><strong>Confidence:</strong> {{ prediction.confidence }}</p>
+                </div>
                 {% endfor %}
-            </ul>
+            </div>
             {% endif %}
+
         </section>
     </main>
 
