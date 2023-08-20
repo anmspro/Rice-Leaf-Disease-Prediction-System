@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 model_mobilenet = load_model('MobileNetv2_leaf.h5')
-model_vgg16 = load_model('Vgg16_leaf.h5')
+# model_vgg16 = load_model('Vgg16_leaf.h5')
 model_resnet = load_model('Resnet_leaf.h5')
 model_inceptionv3 = load_model('Inceptionv3_leaf.h5')
 
