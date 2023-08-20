@@ -3,7 +3,7 @@
   publish = "templates"
 
 [context.production.environment]
-  FLASK_ENV = "production"
+  FLASK_DEBUG = "production"
 
 [context.deploy-preview.environment]
-  FLASK_ENV = "development"
+  FLASK_DEBUG = "development"
